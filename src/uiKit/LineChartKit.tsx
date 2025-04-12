@@ -11,7 +11,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 
 import theme from "theme";
 
-export const LineChartFinancial: React.FC = () => {
+export const LineChartKit: React.FC = () => {
   const [income, setIncome] = useState("1");
   const handleChange = (event: SelectChangeEvent) => {
     setIncome(event.target.value);
