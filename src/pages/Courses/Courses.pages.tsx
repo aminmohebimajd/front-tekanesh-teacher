@@ -5,11 +5,11 @@ import { HeaderLayout } from "layouts";
 import { BreadCrumbsModel } from "types";
 import theme from "theme";
 
-export const DashboardPage: React.FC = () => {
+export const CoursesPage: React.FC = () => {
   const breadcrumbData: BreadCrumbsModel[] = [
     {
       title: "دوره",
-      link: "/dashboard",
+      link: "/courses",
       id: "0",
       color: theme.palette.grey[600],
       active: true,
