@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Chip, Divider, Typography } from "@mui/material";
 import ArrowCircleUpRoundedIcon from "@mui/icons-material/ArrowCircleUpRounded";
 
 import theme from "theme";
 import { MessageTimeIcon, NoteIcon, WalletIcon } from "uiKit";
 import teacherWithoutLabel from "assets/teacher-without-label.png";
+import bestContentTeacherLabel from "assets/best-content-teacher-label.png";
+import effectiveTeacherLabel from "assets/effective-teacher-label.png";
+import professionalTeacherLabel from "assets/professional-teacher-label.png";
+import regularTeacherLabel from "assets/regular-teacher-label.png";
+import responsibleTeacherLabel from "assets/responsible-teacher-label.png";
 
 export const InfoDashboard: React.FC = () => {
+  const [status, setStatus] = useState(2);
+
   return (
     <Box display={"flex"} gap={"12px"}>
       <Box
@@ -21,14 +28,67 @@ export const InfoDashboard: React.FC = () => {
       >
         <Box display={"flex"} gap={"18px"}>
           <Box display={"flex"} flexDirection={"column"} gap={"5px"}>
-            <Typography
-              fontSize={"12px"}
-              fontWeight={700}
-              color={theme.palette.grey[700]}
-              sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
-            >
-              لیبل فصلی مدرس
-            </Typography>
+            {status == 1 && (
+              <Typography
+                fontSize={"12px"}
+                fontWeight={700}
+                color={theme.palette.grey[700]}
+                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+              >
+                لیبل فصلی مدرس
+              </Typography>
+            )}
+            {status == 2 && (
+              <Typography
+                fontSize={"12px"}
+                fontWeight={700}
+                color={"white"}
+                sx={{ textShadow: " 0px 1px  0px #EF5353" }}
+              >
+                لیبل فصلی مدرس
+              </Typography>
+            )}
+            {status == 3 && (
+              <Typography
+                fontSize={"12px"}
+                fontWeight={700}
+                color={"white"}
+                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+              >
+                لیبل فصلی مدرس
+              </Typography>
+            )}
+            {status == 4 && (
+              <Typography
+                fontSize={"12px"}
+                fontWeight={700}
+                color={"white"}
+                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+              >
+                لیبل فصلی مدرس
+              </Typography>
+            )}
+            {status == 5 && (
+              <Typography
+                fontSize={"12px"}
+                fontWeight={700}
+                color={"white"}
+                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+              >
+                لیبل فصلی مدرس
+              </Typography>
+            )}
+            {status == 6 && (
+              <Typography
+                fontSize={"12px"}
+                fontWeight={700}
+                color={"white"}
+                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+              >
+                لیبل فصلی مدرس
+              </Typography>
+            )}
+
             <Chip
               label={"لیبلی ندارید :("}
               variant="outlined"
@@ -61,7 +121,18 @@ export const InfoDashboard: React.FC = () => {
               alignSelf: "center",
             }}
           />
-          <Box component={"img"} src={teacherWithoutLabel} />
+          {status == 1 && <Box component={"img"} src={teacherWithoutLabel} />}
+          {status == 2 && (
+            <Box component={"img"} src={responsibleTeacherLabel} />
+          )}
+          {status == 3 && <Box component={"img"} src={effectiveTeacherLabel} />}
+          {status == 4 && (
+            <Box component={"img"} src={bestContentTeacherLabel} />
+          )}
+          {status == 5 && <Box component={"img"} src={regularTeacherLabel} />}
+          {status == 6 && (
+            <Box component={"img"} src={professionalTeacherLabel} />
+          )}
         </Box>
       </Box>
       <Box
