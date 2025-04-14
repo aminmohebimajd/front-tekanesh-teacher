@@ -6,12 +6,19 @@ import { getUsers } from "core/services";
 interface Props {
     fetching: boolean;
     hasError: boolean;
-    userData: UsersData[];
+    userData: UsersData;
     fetchUserData: (params?: ApiParams) => Promise<void>;
 }
 
 export const useUsersStore = create<Props>((set) => ({
-    userData: [],
+    userData: {
+        first_name: "",
+        last_name: "",
+        birthday: null,
+        email: "",
+        nation_code: "",
+        phone_number: ""
+    },
     fetching: false,
     hasError: false,
     fetchUserData: async () => {
