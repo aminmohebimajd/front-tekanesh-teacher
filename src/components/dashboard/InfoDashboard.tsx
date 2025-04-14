@@ -12,7 +12,7 @@ import regularTeacherLabel from "assets/regular-teacher-label.png";
 import responsibleTeacherLabel from "assets/responsible-teacher-label.png";
 
 export const InfoDashboard: React.FC = () => {
-  const [status, setStatus] = useState(2);
+  const [status] = useState(2);
 
   const bgColor = (status: number) => {
     switch (status) {
