@@ -11,7 +11,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 
 import theme from "theme";
 
-export const LineChartFinancial: React.FC = () => {
+export const LineChartKit: React.FC = () => {
   const [income, setIncome] = useState("1");
   const handleChange = (event: SelectChangeEvent) => {
     setIncome(event.target.value);
@@ -31,7 +31,16 @@ export const LineChartFinancial: React.FC = () => {
         padding={"18px 15px 0 15px"}
         alignItems={"center"}
       >
-        <Typography fontSize={"16px"} color={theme.palette.grey[500]}>
+        <Typography
+          fontSize={"16px"}
+          color={theme.palette.grey[500]}
+          sx={{
+            [theme.breakpoints.down("sm")]: {
+              fontSize: "12px",
+              padding: "13px 15px 0 15px",
+            },
+          }}
+        >
           درآمد کلی مدرس
         </Typography>
 

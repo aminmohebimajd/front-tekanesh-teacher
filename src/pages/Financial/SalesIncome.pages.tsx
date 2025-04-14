@@ -13,13 +13,8 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import { HeaderLayout } from "layouts";
 import theme from "theme";
 import { BreadCrumbsModel } from "types";
-import { FinanceRequestIcons } from "uiKit";
-import {
-  IncomeDetailFinancial,
-  LineChartFinancial,
-  PieChartFinancial,
-  TableFinancial,
-} from "components";
+import { FinanceRequestIcons, LineChartKit, PieChartKit } from "uiKit";
+import { IncomeDetailFinancial, TableFinancial } from "components";
 
 const breadcrumbData: BreadCrumbsModel[] = [
   {
@@ -50,7 +45,13 @@ export const SalesIncomePage: React.FC = () => {
   return (
     <>
       <HeaderLayout title="گزارش مالی" breadcrumb={breadcrumbData} />
-      <Box display={"flex"} flexDirection={"column"} gap={"8px"} height={isMobile ? "75vh" : "100vh"} overflow={"auto"}>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        gap={"8px"}
+        height={isMobile ? "75vh" : "100vh"}
+        overflow={"auto"}
+      >
         <Paper
           elevation={0}
           sx={{
@@ -79,8 +80,8 @@ export const SalesIncomePage: React.FC = () => {
                 },
               }}
             >
-              <PieChartFinancial />
-              <LineChartFinancial />
+              <PieChartKit />
+              <LineChartKit />
             </Box>
           </Box>
         </Paper>
