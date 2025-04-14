@@ -86,15 +86,19 @@ const ProfilePictureUploader: React.FC = () => {
 };
 
 interface FormData {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
-  phone: string;
-  nationalCode: string;
-  birthDate: moment.Moment | null;
+  phone_number: string;
+  nation_code: string;
+  birthday: moment.Moment | null;
 }
 
-export const ProfileForm: React.FC = () => {
+type Props = {
+  userData: FormData
+}
+
+export const ProfileForm: React.FC<Props> = ({ userData }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const [open, setOpen] = useState(false);
 
@@ -104,12 +108,12 @@ export const ProfileForm: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      nationalCode: "",
-      birthDate: null,
+      first_name: userData?.first_name,
+      last_name: userData?.last_name,
+      email: userData?.email,
+      phone_number: userData?.phone_number,
+      nation_code: userData?.nation_code,
+      birthday: null,
     },
   });
 
@@ -138,7 +142,7 @@ export const ProfileForm: React.FC = () => {
         gap="8px"
         flexDirection={isMobile ? "column" : "row"}
       >
-        {["firstName", "lastName"].map((field) => (
+        {["first_name", "lastName"].map((field) => (
           <Box
             key={field}
             display="flex"
@@ -147,7 +151,7 @@ export const ProfileForm: React.FC = () => {
             flex="1"
           >
             <Typography sx={{ fontSize: "12px", fontWeight: 500 }}>
-              {field === "firstName" ? "نام" : "نام خانوادگی"}
+              {field === "first_name" ? "نام" : "نام خانوادگی"}
             </Typography>
             <Controller
               name={field as keyof FormData}
@@ -157,7 +161,7 @@ export const ProfileForm: React.FC = () => {
                 <TextField
                   {...field}
                   placeholder={
-                    field.name === "firstName"
+                    field.name === "first_name"
                       ? "نام را وارد کنید..."
                       : "نام خانوادگی را وارد کنید..."
                   }
@@ -180,14 +184,14 @@ export const ProfileForm: React.FC = () => {
         ))}
       </Box>
 
-      {/* Phone & Email */}
+      {/* phone_number & Email */}
       <Box
         display="flex"
         justifyContent="space-between"
         gap="8px"
         flexDirection={isMobile ? "column" : "row"}
       >
-        {["phone", "email"].map((field) => (
+        {["phone_number", "email"].map((field) => (
           <Box
             key={field}
             display="flex"
@@ -196,7 +200,7 @@ export const ProfileForm: React.FC = () => {
             flex="1"
           >
             <Typography sx={{ fontSize: "12px", fontWeight: 500 }}>
-              {field === "phone" ? "شماره تلفن" : "ایمیل"}
+              {field === "phone_number" ? "شماره تلفن" : "ایمیل"}
             </Typography>
             <Controller
               name={field as keyof FormData}
@@ -206,7 +210,7 @@ export const ProfileForm: React.FC = () => {
                 <TextField
                   {...field}
                   placeholder={
-                    field.name === "phone"
+                    field.name === "phone_number"
                       ? "شماره تلفن را وارد کنید..."
                       : "ایمیل را وارد کنید..."
                   }
@@ -241,7 +245,7 @@ export const ProfileForm: React.FC = () => {
             کد ملی
           </Typography>
           <Controller
-            name="nationalCode"
+            name="nation_code"
             control={control}
             rules={{ required: "این فیلد الزامی است" }}
             render={({ field }) => (
@@ -249,8 +253,8 @@ export const ProfileForm: React.FC = () => {
                 {...field}
                 placeholder="کد ملی را وارد کنید..."
                 fullWidth
-                error={!!errors.nationalCode}
-                helperText={errors.nationalCode?.message}
+                error={!!errors.nation_code}
+                helperText={errors.nation_code?.message}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     height: "34px",
@@ -270,7 +274,7 @@ export const ProfileForm: React.FC = () => {
           </Typography>
           <LocalizationProvider dateAdapter={AdapterMomentJalaali}>
             <Controller
-              name="birthDate"
+              name="birthday"
               control={control}
               rules={{ required: "این فیلد الزامی است" }}
               render={({ field }) => (
@@ -281,8 +285,8 @@ export const ProfileForm: React.FC = () => {
                   slotProps={{
                     textField: {
                       fullWidth: true,
-                      error: !!errors.birthDate,
-                      helperText: errors.birthDate?.message,
+                      error: !!errors.birthday,
+                      helperText: errors.birthday?.message,
                       sx: {
                         "& .MuiOutlinedInput-root": {
                           height: "34px",

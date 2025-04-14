@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
 
 import theme from "theme";
@@ -6,6 +6,7 @@ import { ProfileForm } from "components";
 import { BreadCrumbsModel } from "types";
 import { HeaderLayout } from "layouts";
 import { EditIcons } from "uiKit";
+import { useUsersStore } from "store";
 
 const breadcrumbData: BreadCrumbsModel[] = [
     {
@@ -26,7 +27,11 @@ const breadcrumbData: BreadCrumbsModel[] = [
 
 export const GeneralInfoPage: React.FC = () => {
     const isMobile = useMediaQuery("(max-width:768px)");
+    const { fetchUserData, fetching, userData } = useUsersStore();
 
+    useEffect(() => {
+        fetchUserData();
+    }, []);
     return (
         <>
             <HeaderLayout title="مشخصات عمومـــــــــی" breadcrumb={breadcrumbData} />
@@ -81,7 +86,7 @@ export const GeneralInfoPage: React.FC = () => {
                     flexDirection={"column"}
                     padding={isMobile ? "0 16px" : "28px"}
                 >
-                    <ProfileForm />
+                    <ProfileForm userData={userData} />
                 </Box>
             </Box>
         </>

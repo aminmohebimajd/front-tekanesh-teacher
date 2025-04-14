@@ -35,6 +35,7 @@ import {
 } from "uiKit";
 import { BottomNavigationLayout } from "./bottom-navigation.layout";
 import { HeaderMobileLayout } from "./header-mobile.layout";
+import { postLogin } from "core/services";
 
 const drawerWidth = 258;
 
@@ -173,6 +174,28 @@ export const MainLayout: React.FC = () => {
 
   const handleToggleSubMenu = (title: string) => {
     setOpenSubMenu((prev: any) => ({ ...prev, [title]: !prev[title] }));
+  };
+
+  const [formData, setFormData] = useState({
+    identity: "",
+    otp: "",
+  });
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log("Submitted data:", formData);
+    postLogin(formData);
+    // Example: send to API
+    // fetch('/api/submit', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(formData)
+    // });
   };
 
   return (
@@ -443,10 +466,15 @@ export const MainLayout: React.FC = () => {
                       </ListItem>
 
                       {item.child && (
-                        <Collapse in={openSubMenu[item.title]} timeout="auto" unmountOnExit>
+                        <Collapse
+                          in={openSubMenu[item.title]}
+                          timeout="auto"
+                          unmountOnExit
+                        >
                           <List component="div" disablePadding>
                             {item.child.map((subItem) => {
-                              const isSubActive = location.pathname === subItem.link;
+                              const isSubActive =
+                                location.pathname === subItem.link;
                               return (
                                 <ListItem key={subItem.title} disablePadding>
                                   <ListItemButton
@@ -514,6 +542,31 @@ export const MainLayout: React.FC = () => {
             flexDirection={"column"}
             gap={"16px"}
           >
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                maxWidth: "300px",
+                gap: "10px",
+              }}
+            >
+              <input
+                type="text"
+                name="identity"
+                placeholder="Enter identity"
+                value={formData.identity}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="otp"
+                placeholder="Enter OTP"
+                value={formData.otp}
+                onChange={handleChange}
+              />
+              <button type="submit">Submit</button>
+            </form>
             <Outlet />
           </Box>
         </Box>
@@ -525,7 +578,6 @@ export const MainLayout: React.FC = () => {
             sx={{
               flexGrow: 1,
             }}
-
             padding={isMobile ? 0 : "42px 12px"}
             bgcolor={"#F5F9F8"}
           // height={"100vh"}
