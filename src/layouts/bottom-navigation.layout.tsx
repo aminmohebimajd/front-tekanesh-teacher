@@ -103,6 +103,7 @@ export const BottomNavigationLayout: React.FC = () => {
                     bottom: 0,
                     width: "100%",
                     height: 65,
+                    zIndex: 1000,
                     padding: 0,
                     "& .MuiBottomNavigationAction-label.Mui-selected": {
                         fontSize: 10,

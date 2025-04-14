@@ -5,7 +5,7 @@ import { pieArcLabelClasses, PieChart, useDrawingArea } from "@mui/x-charts";
 
 import theme from "theme";
 
-export const PieChartFinancial: React.FC = () => {
+export const PieChartKit: React.FC = () => {
   const months = [
     "فروردین",
     "اردیبهشت",

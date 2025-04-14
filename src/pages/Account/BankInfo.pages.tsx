@@ -64,7 +64,7 @@ export const BankInfoPage: React.FC = () => {
                 title="ویرایش حساب کاربــــــــری"
                 breadcrumb={breadcrumbData}
             />
-            <Box display={"flex"} flexDirection={"column"} height={isMobile ? "75vh" : "100vh"} overflow={"auto"}>
+            <Box display={"flex"} flexDirection={"column"}>
                 <Paper
                     elevation={0}
                     sx={{

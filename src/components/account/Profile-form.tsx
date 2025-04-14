@@ -17,6 +17,7 @@ import { IconButton } from "@mui/material";
 import addImage from "assets/gallery-add.png";
 import { CustomButton, EditIcons } from "uiKit";
 import theme from "theme";
+import { postUser } from "core/services";
 
 const ProfilePictureUploader: React.FC = () => {
   const [image, setImage] = useState<string | null>(null);
@@ -95,12 +96,13 @@ interface FormData {
 }
 
 type Props = {
-  userData: FormData
-}
+  userData: FormData;
+};
 
 export const ProfileForm: React.FC<Props> = ({ userData }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState<FormData>();
 
   const {
     control,
@@ -113,15 +115,24 @@ export const ProfileForm: React.FC<Props> = ({ userData }) => {
       email: userData?.email,
       phone_number: userData?.phone_number,
       nation_code: userData?.nation_code,
-      birthday: null,
+      birthday: userData?.birthday
+        ? moment(userData.birthday, "jYYYY/jMM/jDD")
+        : null,
     },
   });
 
   const onSubmit = (data: FormData) => {
-    console.log("Form Data:", data);
+    setData(data);
     setOpen(true);
   };
 
+  const handleSubmitForm = () => {
+    postUser(data).then((res) => {
+      if (res) {
+        setOpen(false);
+      }
+    });
+  };
   return (
     <Box
       component="form"
@@ -142,7 +153,7 @@ export const ProfileForm: React.FC<Props> = ({ userData }) => {
         gap="8px"
         flexDirection={isMobile ? "column" : "row"}
       >
-        {["first_name", "lastName"].map((field) => (
+        {["first_name", "last_name"].map((field) => (
           <Box
             key={field}
             display="flex"
@@ -402,7 +413,7 @@ export const ProfileForm: React.FC<Props> = ({ userData }) => {
                 p: "4px",
                 bgcolor: theme.palette.primary[600],
               }}
-              onClick={() => setOpen(false)}
+              onClick={() => handleSubmitForm()}
             >
               اطلاعات را تایید میکنم
             </Button>

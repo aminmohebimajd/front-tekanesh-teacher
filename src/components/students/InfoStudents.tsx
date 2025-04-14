@@ -145,8 +145,8 @@ export const InfoStudents: React.FC = () => {
           >
             <defs>
               <linearGradient id="gradiant1" gradientTransform="rotate(90)">
-                <stop offset="35%" stop-color="#40C79259" />
-                <stop offset="100%" stop-color="#FFFFFF00" />
+                <stop offset="35%" stopColor="#40C79259" />
+                <stop offset="100%" stopColor="#FFFFFF00" />
               </linearGradient>
             </defs>
           </SparkLineChart>
@@ -285,8 +285,8 @@ export const InfoStudents: React.FC = () => {
           >
             <defs>
               <linearGradient id="gradiant2" gradientTransform="rotate(90)">
-                <stop offset="0%" stop-color="#EF5353" />
-                <stop offset="100%" stop-color="#FFFFFF00" />
+                <stop offset="0%" stopColor="#EF5353" />
+                <stop offset="100%" stopColor="#FFFFFF00" />
               </linearGradient>
             </defs>
           </SparkLineChart>
@@ -425,8 +425,8 @@ export const InfoStudents: React.FC = () => {
           >
             <defs>
               <linearGradient id="gradiant3" gradientTransform="rotate(90)">
-                <stop offset="35%" stop-color="#40C79259" />
-                <stop offset="100%" stop-color="#FFFFFF00" />
+                <stop offset="35%" stopColor="#40C79259" />
+                <stop offset="100%" stopColor="#FFFFFF00" />
               </linearGradient>
             </defs>
           </SparkLineChart>
