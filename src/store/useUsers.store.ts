@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { ApiParams, UsersData } from "core/types";
+import { ApiParams } from "core/types";
 import { getUser } from "core/services";
 
 interface Props {

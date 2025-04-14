@@ -6,7 +6,7 @@ import {
   Select,
   SelectChangeEvent,
   Typography,
-  useMediaQuery,
+  // useMediaQuery,
 } from "@mui/material";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 
@@ -34,7 +34,7 @@ const breadcrumbData: BreadCrumbsModel[] = [
 ];
 
 export const SalesIncomePage: React.FC = () => {
-  const isMobile = useMediaQuery("(max-width:768px)");
+  // const isMobile = useMediaQuery("(max-width:768px)");
 
   const [filter, setFilter] = useState("");
 
