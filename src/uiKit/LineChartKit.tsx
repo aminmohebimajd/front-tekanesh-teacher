@@ -31,7 +31,16 @@ export const LineChartKit: React.FC = () => {
         padding={"18px 15px 0 15px"}
         alignItems={"center"}
       >
-        <Typography fontSize={"16px"} color={theme.palette.grey[500]}>
+        <Typography
+          fontSize={"16px"}
+          color={theme.palette.grey[500]}
+          sx={{
+            [theme.breakpoints.down("sm")]: {
+              fontSize: "12px",
+              padding: "13px 15px 0 15px",
+            },
+          }}
+        >
           درآمد کلی مدرس
         </Typography>
 

@@ -326,7 +326,8 @@ export const TableDashboard: React.FC = () => {
         height: "230px",
 
         [theme.breakpoints.down("sm")]: {
-          padding: "0 6px",
+          // padding: "0",
+          margin: "0px -10px",
         },
       }}
     >

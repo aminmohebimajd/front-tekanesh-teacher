@@ -14,20 +14,74 @@ import responsibleTeacherLabel from "assets/responsible-teacher-label.png";
 export const InfoDashboard: React.FC = () => {
   const [status, setStatus] = useState(2);
 
+  const bgColor = (status: number) => {
+    switch (status) {
+      case 1:
+        return theme.palette.grey[900];
+      case 2:
+        return theme.palette.error[700];
+      case 3:
+        return theme.palette.warning[800];
+      case 4:
+        return "#4DB2D280";
+      case 5:
+        return theme.palette.primary[300];
+      case 6:
+        return theme.palette.primary[500];
+      default:
+        return theme.palette.grey[900];
+    }
+  };
+
   return (
-    <Box display={"flex"} gap={"12px"}>
+    <Box
+      display={"flex"}
+      gap={"12px"}
+      flexWrap={"wrap"}
+      sx={{
+        [theme.breakpoints.down("sm")]: {
+          flexDirection: "column",
+          gap: "8px",
+        },
+      }}
+    >
       <Box
         borderRadius={"10px"}
-        bgcolor={theme.palette.grey[900]}
+        bgcolor={() => bgColor(status)}
         padding={"12px 14px"}
         // width={237}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
         flex={1}
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            padding: "12px 22px",
+          },
+        }}
       >
-        <Box display={"flex"} gap={"18px"}>
-          <Box display={"flex"} flexDirection={"column"} gap={"5px"}>
+        <Box
+          display={"flex"}
+          gap={"18px"}
+          sx={{
+            [theme.breakpoints.down("sm")]: {
+              justifyContent: "space-between",
+              width: "100%",
+            },
+          }}
+        >
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            gap={"5px"}
+            sx={{
+              [theme.breakpoints.down("sm")]: {
+                flexDirection: "row",
+                gap: "8px",
+                alignItems: "center",
+              },
+            }}
+          >
             {status == 1 && (
               <Typography
                 fontSize={"12px"}
@@ -53,7 +107,7 @@ export const InfoDashboard: React.FC = () => {
                 fontSize={"12px"}
                 fontWeight={700}
                 color={"white"}
-                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+                sx={{ textShadow: " 0px 1px  0px #F59202" }}
               >
                 لیبل فصلی مدرس
               </Typography>
@@ -63,7 +117,7 @@ export const InfoDashboard: React.FC = () => {
                 fontSize={"12px"}
                 fontWeight={700}
                 color={"white"}
-                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+                sx={{ textShadow: " 0px 1px  0px #3993AF" }}
               >
                 لیبل فصلی مدرس
               </Typography>
@@ -73,7 +127,7 @@ export const InfoDashboard: React.FC = () => {
                 fontSize={"12px"}
                 fontWeight={700}
                 color={"white"}
-                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+                sx={{ textShadow: " 0px 1px  0px #108B6299" }}
               >
                 لیبل فصلی مدرس
               </Typography>
@@ -83,33 +137,161 @@ export const InfoDashboard: React.FC = () => {
                 fontSize={"12px"}
                 fontWeight={700}
                 color={"white"}
-                sx={{ textShadow: " 0px 1px  0px #FFFFFF" }}
+                sx={{ textShadow: " 0px 1px  0px #108B62" }}
               >
                 لیبل فصلی مدرس
               </Typography>
             )}
 
-            <Chip
-              label={"لیبلی ندارید :("}
-              variant="outlined"
-              sx={{
-                display: "flex",
-                height: "18px",
-                padding: "0px 14px",
-                alignItems: "center",
-                fontWeight: 700,
-                fontSize: "10px",
-                color: "white",
-                bgcolor: theme.palette.grey[800],
+            {status == 1 && (
+              <Chip
+                label={"لیبلی ندارید :("}
+                variant="outlined"
+                sx={{
+                  display: "flex",
+                  height: "18px",
+                  padding: "0px 14px",
+                  alignItems: "center",
+                  fontWeight: 700,
+                  fontSize: "10px",
+                  color: "white",
+                  border: "none",
+                  bgcolor: theme.palette.grey[800],
 
-                "& .MuiChip-icon": {
-                  margin: 0,
-                },
-                "& .MuiChip-label": {
-                  padding: 0,
-                },
-              }}
-            />
+                  "& .MuiChip-icon": {
+                    margin: 0,
+                  },
+                  "& .MuiChip-label": {
+                    padding: 0,
+                  },
+                }}
+              />
+            )}
+
+            {status == 2 && (
+              <Chip
+                label={"مدرس پاسخگو"}
+                variant="outlined"
+                sx={{
+                  display: "flex",
+                  height: "18px",
+                  padding: "0px 14px",
+                  alignItems: "center",
+                  fontWeight: 700,
+                  fontSize: "10px",
+                  color: "white",
+                  border: "none",
+                  bgcolor: theme.palette.error[800],
+
+                  "& .MuiChip-icon": {
+                    margin: 0,
+                  },
+                  "& .MuiChip-label": {
+                    padding: 0,
+                  },
+                }}
+              />
+            )}
+
+            {status == 3 && (
+              <Chip
+                label={"مدرس تاثیرگذار"}
+                variant="outlined"
+                sx={{
+                  display: "flex",
+                  height: "18px",
+                  padding: "0px 14px",
+                  alignItems: "center",
+                  fontWeight: 700,
+                  fontSize: "10px",
+                  color: "white",
+                  border: "none",
+                  bgcolor: theme.palette.warning[800],
+
+                  "& .MuiChip-icon": {
+                    margin: 0,
+                  },
+                  "& .MuiChip-label": {
+                    padding: 0,
+                  },
+                }}
+              />
+            )}
+
+            {status == 4 && (
+              <Chip
+                label={"با کیفیت ترین محتوا"}
+                variant="outlined"
+                sx={{
+                  display: "flex",
+                  height: "18px",
+                  padding: "0px 14px",
+                  alignItems: "center",
+                  fontWeight: 700,
+                  fontSize: "10px",
+                  color: "white",
+                  border: "none",
+                  bgcolor: "#4DB2D2",
+
+                  "& .MuiChip-icon": {
+                    margin: 0,
+                  },
+                  "& .MuiChip-label": {
+                    padding: 0,
+                  },
+                }}
+              />
+            )}
+
+            {status == 5 && (
+              <Chip
+                label={"مدرس منظم و متعهد"}
+                variant="outlined"
+                sx={{
+                  display: "flex",
+                  height: "18px",
+                  padding: "0px 14px",
+                  alignItems: "center",
+                  fontWeight: 700,
+                  fontSize: "10px",
+                  color: "white",
+                  border: "none",
+                  bgcolor: theme.palette.primary[400],
+
+                  "& .MuiChip-icon": {
+                    margin: 0,
+                  },
+                  "& .MuiChip-label": {
+                    padding: 0,
+                  },
+                }}
+              />
+            )}
+
+            {status == 6 && (
+              <Chip
+                label={"مدرس حرفه ای"}
+                variant="outlined"
+                sx={{
+                  display: "flex",
+                  height: "18px",
+                  padding: "0px 14px",
+                  alignItems: "center",
+                  fontWeight: 700,
+                  fontSize: "10px",
+                  color: "white",
+                  border: "none",
+                  bgcolor: theme.palette.primary[600],
+
+                  "& .MuiChip-icon": {
+                    margin: 0,
+                  },
+                  "& .MuiChip-label": {
+                    padding: 0,
+                  },
+                }}
+              />
+            )}
           </Box>
           <Divider
             orientation="vertical"
@@ -143,6 +325,12 @@ export const InfoDashboard: React.FC = () => {
         display={"flex"}
         alignItems={"center"}
         flex={1}
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            background: theme.palette.grey[400],
+            padding: "12px 22px",
+          },
+        }}
       >
         <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
           <Box display={"flex"} flexDirection={"column"}>
@@ -204,6 +392,12 @@ export const InfoDashboard: React.FC = () => {
         display={"flex"}
         alignItems={"center"}
         flex={1}
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            background: theme.palette.grey[400],
+            padding: "12px 22px",
+          },
+        }}
       >
         <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
           <Box display={"flex"} flexDirection={"column"}>
@@ -238,6 +432,12 @@ export const InfoDashboard: React.FC = () => {
         display={"flex"}
         alignItems={"center"}
         flex={1}
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            background: theme.palette.grey[400],
+            padding: "12px 22px",
+          },
+        }}
       >
         <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
           <Box display={"flex"} flexDirection={"column"}>

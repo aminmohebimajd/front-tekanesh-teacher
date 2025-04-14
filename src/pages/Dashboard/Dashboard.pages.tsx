@@ -52,7 +52,19 @@ export const DashboardPage: React.FC = () => {
   return (
     <>
       <HeaderLayout title="داشبورد" breadcrumb={breadcrumbData} />
-      <Box display={"flex"} flexDirection={"column"} gap={"12px"}>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        gap={"12px"}
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            gap: "8px",
+            background: "white",
+            padding: "14px 10px 65px",
+            borderRadius: "20px 20px 0px 0px",
+          },
+        }}
+      >
         <InfoDashboard />
 
         <Paper
@@ -62,10 +74,32 @@ export const DashboardPage: React.FC = () => {
             bgcolor: "white",
             borderRadius: "10px",
             padding: "24px 28px",
+            [theme.breakpoints.down("sm")]: {
+              borderRadius: 0,
+              padding: "unset",
+            },
           }}
         >
-          <Box display={"flex"} flexDirection={"column"} gap={"17px"}>
-            <Box display={"flex"} flexDirection={"column"} gap={"23px"}>
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            gap={"17px"}
+            sx={{
+              [theme.breakpoints.down("sm")]: {
+                gap: "21px",
+              },
+            }}
+          >
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              gap={"23px"}
+              sx={{
+                [theme.breakpoints.down("sm")]: {
+                  gap: "12px",
+                },
+              }}
+            >
               <Box
                 display={"flex"}
                 justifyContent={"space-between"}
@@ -151,18 +185,50 @@ export const DashboardPage: React.FC = () => {
                   <MenuItem>ریالی</MenuItem>
                 </Menu>
               </Box>
-              <Box display={"flex"} gap={"11px"}>
+              <Box
+                display={"flex"}
+                gap={"11px"}
+                sx={{
+                  [theme.breakpoints.down("sm")]: {
+                    flexDirection: "column",
+                    gap: "19px",
+                  },
+                }}
+              >
                 <PieChartKit />
                 <LineChartKit />
               </Box>
             </Box>
-            <Box display={"flex"} flexDirection={"column"} gap={"16px"}>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              gap={"16px"}
+              sx={{
+                [theme.breakpoints.down("sm")]: {
+                  gap: "20px",
+                },
+              }}
+            >
               <Box
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={"space-between"}
+                sx={{
+                  [theme.breakpoints.down("sm")]: {
+                    padding: "0 5px",
+                  },
+                }}
               >
-                <Box display={"flex"} alignItems={"center"} gap={"10px"}>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  gap={"10px"}
+                  sx={{
+                    [theme.breakpoints.down("sm")]: {
+                      gap: "2px",
+                    },
+                  }}
+                >
                   <ListIcons
                     color={theme.palette.primary[600]}
                     width={22}
@@ -173,7 +239,7 @@ export const DashboardPage: React.FC = () => {
                     fontWeight={700}
                     color={theme.palette.grey[500]}
                   >
-                    لیست دانشجــــــــویان
+                    لیست دانشجویان
                   </Typography>
                 </Box>
                 <Select

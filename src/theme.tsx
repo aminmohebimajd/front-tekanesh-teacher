@@ -80,11 +80,14 @@ const theme = createTheme({
     error: {
       500: "#EF5353",
       600: "#EF53531A",
+      700: "#EF535399",
+      800: "#EF5353CC",
     },
     warning: {
       500: "#F59202",
       600: "#F592021A",
       700: "#F592024D",
+      800: "#F5920299",
       contrastText: "#fff",
     },
   },
