@@ -537,10 +537,11 @@ export const MainLayout: React.FC = () => {
             component="main"
             sx={{ flexGrow: 1, p: "42px 12px" }}
             bgcolor={"#F5F9F8"}
-            // height={"100vh"}
             display={"flex"}
             flexDirection={"column"}
             gap={"16px"}
+            height={"100vh"}
+            overflow={"auto"}
           >
             <form
               onSubmit={handleSubmit}
@@ -580,7 +581,9 @@ export const MainLayout: React.FC = () => {
             }}
             padding={isMobile ? 0 : "42px 12px"}
             bgcolor={"#F5F9F8"}
-          // height={"100vh"}
+            height={"100vh"}
+            overflow={"scroll"}
+            paddingBottom={"120px"}
           >
             <Outlet />
           </Box>

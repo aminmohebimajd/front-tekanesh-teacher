@@ -11,10 +11,9 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 
+import theme from "theme";
 import { HeaderLayout } from "layouts";
 import { BreadCrumbsModel } from "types";
-import theme from "theme";
-
 import {
   LineChartKit,
   ListIcons,
@@ -22,7 +21,7 @@ import {
   PieChartKit,
   SettingIcon,
 } from "uiKit";
-import { InfoDashboard, TableDashboard } from "components/dashboard";
+import { InfoDashboard, TableDashboard } from "components";
 
 export const DashboardPage: React.FC = () => {
   const breadcrumbData: BreadCrumbsModel[] = [

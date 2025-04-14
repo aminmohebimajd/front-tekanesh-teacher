@@ -2,6 +2,7 @@ export interface ApiParams {
   results?: number;
   nat?: string;
 }
+
 export interface ApiResponse {
   results: UsersData;
   info: {
@@ -19,15 +20,4 @@ export interface UsersData {
   phone_number: string;
   nation_code: string;
   birthday: moment.Moment | null;
-}
-
-export interface UsersStatistics {
-  id: string;
-  label: string;
-  value: number;
-}
-
-export interface UsersMappingResults {
-  availableCountries: string[];
-  statistics: UsersStatistics[];
 }

@@ -35,8 +35,7 @@ export const ContractsPage: React.FC = () => {
             <Box
                 display={"flex"}
                 flexDirection={"column"}
-                height={isMobile ? "75vh" : "100vh"}
-                overflow={"auto"}
+
             >
                 <Paper
                     elevation={0}

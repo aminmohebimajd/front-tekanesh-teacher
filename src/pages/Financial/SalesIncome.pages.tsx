@@ -49,8 +49,6 @@ export const SalesIncomePage: React.FC = () => {
         display={"flex"}
         flexDirection={"column"}
         gap={"8px"}
-        height={isMobile ? "75vh" : "100vh"}
-        overflow={"auto"}
       >
         <Paper
           elevation={0}

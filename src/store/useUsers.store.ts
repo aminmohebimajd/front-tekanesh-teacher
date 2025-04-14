@@ -1,32 +1,25 @@
 import { create } from "zustand";
 
 import { ApiParams, UsersData } from "core/types";
-import { getUsers } from "core/services";
+import { getUser } from "core/services";
 
 interface Props {
     fetching: boolean;
     hasError: boolean;
-    userData: UsersData;
+    userData: any;
     fetchUserData: (params?: ApiParams) => Promise<void>;
 }
 
 export const useUsersStore = create<Props>((set) => ({
-    userData: {
-        first_name: "",
-        last_name: "",
-        birthday: null,
-        email: "",
-        nation_code: "",
-        phone_number: ""
-    },
+    userData: {},
     fetching: false,
     hasError: false,
     fetchUserData: async () => {
         set({ fetching: true, hasError: false });
         try {
-            const response = await getUsers();
+            const response = await getUser();
             set({
-                userData: response,
+                userData: response.data,
                 fetchUserData: response,
                 fetching: false,
             });

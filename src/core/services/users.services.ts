@@ -1,8 +1,13 @@
 import axiosInstance from "core/config/axios.config";
 
-export const getUsers = async () => {
+export const getUser = async () => {
     const response = await axiosInstance.get("/account/detail/");
-    return response.data.results;
+    return response.data;
+};
+
+export const postUser = async (data: any) => {
+    const response = await axiosInstance.patch("/account/detail/", data);
+    return response.data;
 };
 
 export const postLogin = async (data: any) => {
