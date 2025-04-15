@@ -9,7 +9,7 @@ import {
 
 import theme from "theme";
 import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import { CustomButton, WalletIcon } from "uiKit";
 import { BankCard } from "components";
 

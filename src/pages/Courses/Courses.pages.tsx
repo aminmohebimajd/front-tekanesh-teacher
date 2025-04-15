@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 
 import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import theme from "theme";
 
 export const CoursesPage: React.FC = () => {

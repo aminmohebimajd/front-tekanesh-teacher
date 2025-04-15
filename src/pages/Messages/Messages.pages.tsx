@@ -3,7 +3,7 @@ import { Box, Drawer, IconButton, useMediaQuery } from "@mui/material";
 import { ArrowBackIos } from "@mui/icons-material";
 
 import theme from "theme";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import { ChatTextInput, AllMessages, ChatDetail } from "components";
 import { HeaderLayout } from "layouts";
 

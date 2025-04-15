@@ -12,7 +12,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 
 import { HeaderLayout } from "layouts";
 import theme from "theme";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import { FinanceRequestIcons, LineChartKit, PieChartKit } from "uiKit";
 import { IncomeDetailFinancial, TableFinancial } from "components";
 

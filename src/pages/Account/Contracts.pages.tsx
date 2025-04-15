@@ -3,7 +3,7 @@ import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
 
 import theme from "theme";
 import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import { CustomButton, DocumentIcon } from "uiKit";
 
 const breadcrumbData: BreadCrumbsModel[] = [

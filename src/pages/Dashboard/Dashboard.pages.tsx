@@ -13,7 +13,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 
 import theme from "theme";
 import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import {
   LineChartKit,
   ListIcons,

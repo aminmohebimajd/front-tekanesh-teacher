@@ -3,7 +3,7 @@ import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
 
 import theme from "theme";
 import { ProfileForm } from "components";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import { HeaderLayout } from "layouts";
 import { EditIcons } from "uiKit";
 import { useUsersStore } from "store";
