@@ -4,7 +4,7 @@ export interface ApiParams {
 }
 
 export interface ApiResponse {
-  results: UsersData;
+  results: UsersDataTypes;
   info: {
     seed: string;
     results: number;
@@ -13,7 +13,7 @@ export interface ApiResponse {
   };
 }
 
-export interface UsersData {
+export interface UsersDataTypes {
   first_name: string;
   last_name: string;
   email: string;

@@ -1,12 +1,12 @@
 import axiosInstance from "core/config/axios.config";
-import { UsersData } from "core/types";
+import { UsersDataTypes } from "core/types";
 
 export const getUser = async () => {
     const response = await axiosInstance.get("/account/detail/");
     return response.data;
 };
 
-export const postUser = async (data: UsersData) => {
+export const postUser = async (data: Partial<UsersDataTypes>) => {
     const response = await axiosInstance.patch("/account/detail/", data);
     return response.data;
 };
