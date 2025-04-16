@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Chip, Divider, Typography } from "@mui/material";
 import ArrowCircleUpRoundedIcon from "@mui/icons-material/ArrowCircleUpRounded";
 
@@ -10,6 +10,8 @@ import effectiveTeacherLabel from "assets/effective-teacher-label.png";
 import professionalTeacherLabel from "assets/professional-teacher-label.png";
 import regularTeacherLabel from "assets/regular-teacher-label.png";
 import responsibleTeacherLabel from "assets/responsible-teacher-label.png";
+import PersianTypography from "core/utils/PersianTypoGraphy";
+import { useDashboardStore } from "store/useDashboard.store";
 
 export const InfoDashboard: React.FC = () => {
   const [status] = useState(2);
@@ -33,6 +35,14 @@ export const InfoDashboard: React.FC = () => {
     }
   };
 
+  const { fetching, fetchDashOverviewData, dashOverviewData } =
+    useDashboardStore();
+
+  useEffect(() => {
+    fetchDashOverviewData();
+  }, []);
+
+  console.log("dashOverviewData :>> ", dashOverviewData);
   return (
     <Box
       display={"flex"}
@@ -338,9 +348,12 @@ export const InfoDashboard: React.FC = () => {
               مجموع درآمد از دانشجویان
             </Typography>
             <Box display={"flex"} alignItems={"center"} gap={"5px"}>
-              <Typography fontSize={"20px"} color={theme.palette.grey[500]}>
-                ۵٬۶۰۰٬۰۰۰٬۰۰۰
-              </Typography>
+              <PersianTypography
+                fontSize={"20px"}
+                color={theme.palette.grey[500]}
+              >
+                {dashOverviewData?.students_total_income}
+              </PersianTypography>
               <Chip
                 label="(+۵٪)"
                 icon={
@@ -405,9 +418,9 @@ export const InfoDashboard: React.FC = () => {
               تکالیف نیازمند بازخورد
             </Typography>
             <Box display={"flex"} alignItems={"center"} gap={"5px"}>
-              <Typography fontSize={"20px"} color={"error"}>
-                56
-              </Typography>
+              <PersianTypography fontSize={"20px"} color={"error"}>
+                {dashOverviewData?.in_review}
+              </PersianTypography>
             </Box>
           </Box>
           <Box
@@ -445,9 +458,9 @@ export const InfoDashboard: React.FC = () => {
               پیام های نیازمند پاسخ
             </Typography>
             <Box display={"flex"} alignItems={"center"} gap={"5px"}>
-              <Typography fontSize={"20px"} color={"warning"}>
-                56
-              </Typography>
+              <PersianTypography fontSize={"20px"} color={"warning"}>
+                {dashOverviewData?.unanswered_messages}
+              </PersianTypography>
             </Box>
           </Box>
           <Box

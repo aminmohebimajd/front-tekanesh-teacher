@@ -6,3 +6,4 @@ export * from "./Forum";
 export * from "./Marketing";
 export * from "./Messages";
 export * from "./Students";
+export * from "./Login";

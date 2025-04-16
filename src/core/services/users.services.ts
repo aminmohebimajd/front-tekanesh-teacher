@@ -15,3 +15,8 @@ export const postLogin = async (data: any) => {
     const response = await axiosInstance.post("/account/login/", data);
     return response;
 };
+
+export const postOtp = async (data: any) => {
+    const response = await axiosInstance.post("/account/otp/send/", data);
+    return response;
+};
