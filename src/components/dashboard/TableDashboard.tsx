@@ -54,8 +54,8 @@ export const TableDashboard: React.FC = () => {
               params?.value?.status === 1
                 ? "primary"
                 : params?.value?.status === 2
-                ? "warning"
-                : "error"
+                  ? "warning"
+                  : "error"
             }
             anchorOrigin={{
               vertical: "top",
@@ -140,7 +140,7 @@ export const TableDashboard: React.FC = () => {
             </Typography>
           </Box>
           <Typography fontSize={"14px"}>
-            {params?.value?.income} تومان
+            {params?.value?.income.toLocaleString('fa-IR')} تومان
           </Typography>
         </Box>
       ),

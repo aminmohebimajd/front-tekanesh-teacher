@@ -35,7 +35,7 @@ export const InfoDashboard: React.FC = () => {
     }
   };
 
-  const { fetching, fetchDashOverviewData, dashOverviewData } =
+  const { fetchDashOverviewData, dashOverviewData } =
     useDashboardStore();
 
   useEffect(() => {
@@ -352,7 +352,7 @@ export const InfoDashboard: React.FC = () => {
                 fontSize={"20px"}
                 color={theme.palette.grey[500]}
               >
-                {dashOverviewData?.students_total_income}
+                {Number(dashOverviewData?.students_total_income).toLocaleString("fa")}
               </PersianTypography>
               <Chip
                 label="(+۵٪)"
@@ -419,7 +419,7 @@ export const InfoDashboard: React.FC = () => {
             </Typography>
             <Box display={"flex"} alignItems={"center"} gap={"5px"}>
               <PersianTypography fontSize={"20px"} color={"error"}>
-                {dashOverviewData?.in_review}
+                {dashOverviewData?.in_review.toLocaleString("fa-IR")}
               </PersianTypography>
             </Box>
           </Box>
@@ -459,7 +459,7 @@ export const InfoDashboard: React.FC = () => {
             </Typography>
             <Box display={"flex"} alignItems={"center"} gap={"5px"}>
               <PersianTypography fontSize={"20px"} color={"warning"}>
-                {dashOverviewData?.unanswered_messages}
+                {dashOverviewData?.unanswered_messages.toLocaleString("fa-IR")}
               </PersianTypography>
             </Box>
           </Box>
