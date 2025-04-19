@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -13,7 +13,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 
 import theme from "theme";
 import { HeaderLayout } from "layouts";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import {
   LineChartKit,
   ListIcons,
@@ -22,6 +22,7 @@ import {
   SettingIcon,
 } from "uiKit";
 import { InfoDashboard, TableDashboard } from "components";
+import { useDashboardStore } from "store/useDashboard.store";
 
 export const DashboardPage: React.FC = () => {
   const breadcrumbData: BreadCrumbsModel[] = [
@@ -35,6 +36,7 @@ export const DashboardPage: React.FC = () => {
   ];
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [income, setIncome] = useState("1");
+  const { fetching, fetchDashOverviewData } = useDashboardStore();
 
   const open = Boolean(anchorEl);
 
@@ -47,6 +49,10 @@ export const DashboardPage: React.FC = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setIncome(event.target.value);
   };
+
+  useEffect(() => {
+    fetchDashOverviewData();
+  }, []);
 
   return (
     <>
@@ -64,7 +70,7 @@ export const DashboardPage: React.FC = () => {
           },
         }}
       >
-        <InfoDashboard />
+        {fetching ? "" : <InfoDashboard />}
 
         <Paper
           elevation={0}

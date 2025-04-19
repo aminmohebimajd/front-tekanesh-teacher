@@ -4,7 +4,7 @@ export interface ApiParams {
 }
 
 export interface ApiResponse {
-  results: UsersData;
+  results: UsersDataTypes;
   info: {
     seed: string;
     results: number;
@@ -13,11 +13,13 @@ export interface ApiResponse {
   };
 }
 
-export interface UsersData {
+export interface UsersDataTypes {
   first_name: string;
   last_name: string;
   email: string;
   phone_number: string;
   nation_code: string;
   birthday: moment.Moment | null;
+  role: number,
+  telegram_status: boolean
 }

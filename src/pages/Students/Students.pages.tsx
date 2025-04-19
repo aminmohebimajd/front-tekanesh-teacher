@@ -3,7 +3,7 @@ import { Box, Paper } from "@mui/material";
 
 import { HeaderLayout } from "layouts";
 import theme from "theme";
-import { BreadCrumbsModel } from "types";
+import { BreadCrumbsModel } from "core/types";
 import {
   DrawerStudents,
   InfoStudents,

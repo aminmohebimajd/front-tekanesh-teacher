@@ -6,7 +6,7 @@ export const GlobalStyle = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     direction: rtl;
-    font-family: yekanBakh, Arial, sans-serif;
+    font-family: 'yekanBakh, Arial, sans-serif';
     max-height: 90vh;
     overflow: hidden;
   }

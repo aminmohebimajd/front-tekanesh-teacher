@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -35,7 +35,8 @@ import {
 } from "uiKit";
 import { BottomNavigationLayout } from "./bottom-navigation.layout";
 import { HeaderMobileLayout } from "./header-mobile.layout";
-import { postLogin } from "core/services";
+import { useUsersStore } from "store/useUsers.store";
+import { getRoleName } from "core/utils";
 
 const drawerWidth = 258;
 
@@ -165,6 +166,7 @@ const SidebarMenu = [
 export const MainLayout: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const location = useLocation(); // Get current path
+  const { fetchUserData, userData } = useUsersStore();
 
   const [open, setOpen] = useState(true);
   const [openSubMenu, setOpenSubMenu] = useState<any>({});
@@ -176,27 +178,10 @@ export const MainLayout: React.FC = () => {
     setOpenSubMenu((prev: any) => ({ ...prev, [title]: !prev[title] }));
   };
 
-  const [formData, setFormData] = useState({
-    identity: "",
-    otp: "",
-  });
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Submitted data:", formData);
-    postLogin(formData);
-    // Example: send to API
-    // fetch('/api/submit', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData)
-    // });
-  };
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -346,10 +331,10 @@ export const MainLayout: React.FC = () => {
                       fontWeight={"700"}
                       color="#334155"
                     >
-                      تیـــــــــــــدا گودرزی{" "}
+                      {userData?.first_name} {userData?.last_name}
                     </Typography>
                     <Typography fontSize={12} color={theme.palette.grey[600]}>
-                      مـــــدرس آکادمـــی{" "}
+                      {getRoleName(userData?.role)} آکادمی
                     </Typography>
                   </Box>
                 )}
@@ -543,31 +528,6 @@ export const MainLayout: React.FC = () => {
             height={"100vh"}
             overflow={"auto"}
           >
-            <form
-              onSubmit={handleSubmit}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                maxWidth: "300px",
-                gap: "10px",
-              }}
-            >
-              <input
-                type="text"
-                name="identity"
-                placeholder="Enter identity"
-                value={formData.identity}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="otp"
-                placeholder="Enter OTP"
-                value={formData.otp}
-                onChange={handleChange}
-              />
-              <button type="submit">Submit</button>
-            </form>
             <Outlet />
           </Box>
         </Box>

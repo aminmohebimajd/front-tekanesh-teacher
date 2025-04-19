@@ -18,6 +18,7 @@ import addImage from "assets/gallery-add.png";
 import { CustomButton, EditIcons } from "uiKit";
 import theme from "theme";
 import { postUser } from "core/services";
+import { UsersDataTypes } from "core/types";
 
 const ProfilePictureUploader: React.FC = () => {
   const [image, setImage] = useState<string | null>(null);
@@ -96,13 +97,13 @@ interface FormData {
 }
 
 type Props = {
-  userData: FormData;
+  userData: UsersDataTypes;
 };
 
 export const ProfileForm: React.FC<Props> = ({ userData }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState<FormData>();
+  const [data, setData] = useState<Partial<UsersDataTypes>>({});
 
   const {
     control,
@@ -328,12 +329,30 @@ export const ProfileForm: React.FC<Props> = ({ userData }) => {
           justifyContent={isMobile ? "space-between" : "flex-start"}
         >
           <Typography fontSize={"12px"}>وضعیت اتصال به ربات تلگرام</Typography>
-          <CustomButton
-            variant="contained"
-            sx={{ backgroundColor: "#4DB2D2", fontWeight: 500, height: "34px" }}
-          >
-            اتصال به تلگــــــــــــرام
-          </CustomButton>
+          {userData?.telegram_status ? (
+            <CustomButton
+              variant="contained"
+              sx={{
+                backgroundColor: "#4DB2D2",
+                fontWeight: 500,
+                height: "34px",
+              }}
+              disabled
+            >
+              متصل شده
+            </CustomButton>
+          ) : (
+            <CustomButton
+              variant="contained"
+              sx={{
+                backgroundColor: "#4DB2D2",
+                fontWeight: 500,
+                height: "34px",
+              }}
+            >
+              اتصال به تلگــــــــــــرام
+            </CustomButton>
+          )}
         </Box>
         {/* Submit Button */}
         <Button
