@@ -35,8 +35,7 @@ export const InfoDashboard: React.FC = () => {
     }
   };
 
-  const { dashOverviewData } =
-    useDashboardStore();
+  const { dashOverviewData } = useDashboardStore();
   return (
     <Box
       display={"flex"}
@@ -346,7 +345,9 @@ export const InfoDashboard: React.FC = () => {
                 fontSize={"20px"}
                 color={theme.palette.grey[500]}
               >
-                {Number(dashOverviewData?.students_total_income).toLocaleString("fa")}
+                {Number(dashOverviewData?.students_total_income).toLocaleString(
+                  "fa"
+                )}
               </PersianTypography>
               <Chip
                 label="(+۵٪)"

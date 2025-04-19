@@ -21,8 +21,9 @@ import {
   PieChartKit,
   SettingIcon,
 } from "uiKit";
-import { InfoDashboard, TableDashboard } from "components";
+import { DrawerStudents, InfoDashboard, TableStudents } from "components";
 import { useDashboardStore } from "store/useDashboard.store";
+import { useStudentsStore } from "store/useStudents.store";
 
 export const DashboardPage: React.FC = () => {
   const breadcrumbData: BreadCrumbsModel[] = [
@@ -37,13 +38,17 @@ export const DashboardPage: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [income, setIncome] = useState("1");
   const { fetching, fetchDashOverviewData } = useDashboardStore();
+  const { fetchStudentsListData } = useStudentsStore();
 
-  const open = Boolean(anchorEl);
+  const openCurrency = Boolean(anchorEl);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleCloseCurrency = () => {
     setAnchorEl(null);
   };
   const handleChange = (event: SelectChangeEvent) => {
@@ -52,6 +57,7 @@ export const DashboardPage: React.FC = () => {
 
   useEffect(() => {
     fetchDashOverviewData();
+    fetchStudentsListData({ page: 1 })
   }, []);
 
   return (
@@ -123,9 +129,9 @@ export const DashboardPage: React.FC = () => {
 
                 <Button
                   id="basic-button"
-                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-controls={openCurrency ? "basic-menu" : undefined}
                   aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
+                  aria-expanded={openCurrency ? "true" : undefined}
                   onClick={handleClick}
                   sx={{ padding: "0px", minWidth: "28px" }}
                 >
@@ -134,8 +140,8 @@ export const DashboardPage: React.FC = () => {
                 <Menu
                   id="basic-menu"
                   anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
+                  open={openCurrency}
+                  onClose={handleCloseCurrency}
                   MenuListProps={{
                     "aria-labelledby": "basic-button",
                   }}
@@ -298,7 +304,8 @@ export const DashboardPage: React.FC = () => {
                   </MenuItem>
                 </Select>
               </Box>
-              <TableDashboard />
+              <TableStudents handleOpen={handleOpen} />
+              <DrawerStudents open={open} handleClose={handleClose} />
             </Box>
           </Box>
         </Paper>
