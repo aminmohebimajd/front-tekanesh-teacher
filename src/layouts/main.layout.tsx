@@ -166,7 +166,7 @@ const SidebarMenu = [
 export const MainLayout: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const location = useLocation(); // Get current path
-  const { fetchUserData, fetching, userData } = useUsersStore();
+  const { fetchUserData, userData } = useUsersStore();
 
   const [open, setOpen] = useState(true);
   const [openSubMenu, setOpenSubMenu] = useState<any>({});
