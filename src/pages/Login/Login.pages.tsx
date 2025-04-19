@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { postLogin, postOtp } from "core/services";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Box, TextField } from "@mui/material";
 import { CustomButton } from "uiKit";
 
