@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Badge, Box, Chip, Typography } from "@mui/material";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import DoneIcon from "@mui/icons-material/Done";
@@ -8,12 +8,16 @@ import NorthRoundedIcon from "@mui/icons-material/NorthRounded";
 
 import theme from "theme";
 import { CustomButton } from "uiKit";
-import avatar from "assets/avatar-Image.png";
+import { useStudentsStore } from "store/useStudents.store";
+import { MapStudentsToRows } from "core/utils";
 
 type Props = {
   handleOpen: () => void;
 };
 export const TableStudents: React.FC<Props> = ({ handleOpen }) => {
+  const { studentsListData } = useStudentsStore();
+  const rows = useMemo(() => MapStudentsToRows(studentsListData), [studentsListData]);
+
   const columns: GridColDef[] = [
     {
       field: "fullName",
@@ -249,85 +253,84 @@ export const TableStudents: React.FC<Props> = ({ handleOpen }) => {
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      fullName: {
-        id: 1,
-        imageSrc: avatar,
-        fullName: "تیدا گودرزی",
-        status: 1,
-      },
-      currentGrade: {
-        grade: "سطح ۲",
-      },
-      studentIncome: {
-        income: "۵۰۰٬۰۰۰",
-        percent: "+25%",
-      },
-      groupStatus: {
-        status: "در حال کسب درآمد",
-      },
-      studentStatus: {
-        status: "تایید شده",
-      },
-      action: 1,
-    },
-    {
-      id: 2,
-      fullName: {
-        id: 2,
-        imageSrc: avatar,
-        fullName: "مرتضی پاک سرشت",
-        status: 2,
-      },
-      currentGrade: {
-        grade: "سطح ۲",
-      },
-      studentIncome: {
-        income: "۵۰۰٬۰۰۰",
-        percent: "+25%",
-      },
-      groupStatus: {
-        status: "در حال کسب درآمد",
-      },
-      studentStatus: {
-        status: "تایید شده",
-      },
-      action: 1,
-    },
-    {
-      id: 3,
-      fullName: {
-        id: 3,
-        imageSrc: avatar,
-        fullName: "سپهــــــــر رسولی",
-        status: 3,
-      },
-      currentGrade: {
-        grade: "سطح ۲",
-      },
-      studentIncome: {
-        income: "۵۰۰٬۰۰۰",
-        percent: "+25%",
-      },
-      groupStatus: {
-        status: "در حال کسب درآمد",
-      },
-      studentStatus: {
-        status: "تایید شده",
-      },
-      action: 1,
-    },
-  ];
+  // const rows = [
+  //   {
+  //     id: 1,
+  //     fullName: {
+  //       id: 1,
+  //       imageSrc: avatar,
+  //       fullName: "تیدا گودرزی",
+  //       status: 1,
+  //     },
+  //     currentGrade: {
+  //       grade: "سطح ۲",
+  //     },
+  //     studentIncome: {
+  //       income: "۵۰۰٬۰۰۰",
+  //       percent: "+25%",
+  //     },
+  //     groupStatus: {
+  //       status: "در حال کسب درآمد",
+  //     },
+  //     studentStatus: {
+  //       status: "تایید شده",
+  //     },
+  //     action: 1,
+  //   },
+  //   {
+  //     id: 2,
+  //     fullName: {
+  //       id: 2,
+  //       imageSrc: avatar,
+  //       fullName: "مرتضی پاک سرشت",
+  //       status: 2,
+  //     },
+  //     currentGrade: {
+  //       grade: "سطح ۲",
+  //     },
+  //     studentIncome: {
+  //       income: "۵۰۰٬۰۰۰",
+  //       percent: "+25%",
+  //     },
+  //     groupStatus: {
+  //       status: "در حال کسب درآمد",
+  //     },
+  //     studentStatus: {
+  //       status: "تایید شده",
+  //     },
+  //     action: 1,
+  //   },
+  //   {
+  //     id: 3,
+  //     fullName: {
+  //       id: 3,
+  //       imageSrc: avatar,
+  //       fullName: "سپهــــــــر رسولی",
+  //       status: 3,
+  //     },
+  //     currentGrade: {
+  //       grade: "سطح ۲",
+  //     },
+  //     studentIncome: {
+  //       income: "۵۰۰٬۰۰۰",
+  //       percent: "+25%",
+  //     },
+  //     groupStatus: {
+  //       status: "در حال کسب درآمد",
+  //     },
+  //     studentStatus: {
+  //       status: "تایید شده",
+  //     },
+  //     action: 1,
+  //   },
+  // ];
+
   return (
     <Box
       display={"flex"}
       flexDirection={"column"}
       sx={{
         direction: "rtl",
-        height: "230px",
-
         [theme.breakpoints.down("sm")]: {
           padding: "0 6px",
         },
@@ -337,6 +340,7 @@ export const TableStudents: React.FC<Props> = ({ handleOpen }) => {
         rows={rows}
         columns={columns}
         disableColumnMenu
+        autoHeight
         sx={{
           border: 0,
           direction: "rtl",
@@ -364,6 +368,12 @@ export const TableStudents: React.FC<Props> = ({ handleOpen }) => {
           },
           "& .MuiDataGrid-columnHeader": {
             height: "40px !important",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
           },
         }}
         autosizeOptions={{ includeHeaders: true }}

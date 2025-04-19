@@ -1,6 +1,6 @@
 export interface ApiParams {
-  results?: number;
-  nat?: string;
+  page?: number;
+
 }
 
 export interface ApiResponse {

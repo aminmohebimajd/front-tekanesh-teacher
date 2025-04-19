@@ -1,4 +1,6 @@
 export * from "./users.types";
 export * from "./breadcrumb.types";
 export * from "./icons.types";
+export * from "./dashboard.types";
+export * from "./students.types";
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
 
 import theme from "theme";
@@ -27,11 +27,7 @@ const breadcrumbData: BreadCrumbsModel[] = [
 
 export const GeneralInfoPage: React.FC = () => {
     const isMobile = useMediaQuery("(max-width:768px)");
-    const { fetchUserData, fetching, userData } = useUsersStore();
-
-    useEffect(() => {
-        fetchUserData();
-    }, []);
+    const { fetching, userData } = useUsersStore();
     return (
         <>
             {fetching ? (
