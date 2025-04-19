@@ -20,4 +20,6 @@ export interface UsersDataTypes {
   phone_number: string;
   nation_code: string;
   birthday: moment.Moment | null;
+  role: number,
+  telegram_status: boolean
 }

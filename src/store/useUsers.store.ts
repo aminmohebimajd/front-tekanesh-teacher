@@ -1,17 +1,26 @@
 import { create } from "zustand";
 
-import { ApiParams } from "core/types";
+import { ApiParams, UsersDataTypes } from "core/types";
 import { getUser } from "core/services";
 
 interface Props {
     fetching: boolean;
     hasError: boolean;
-    userData: any;
+    userData: UsersDataTypes;
     fetchUserData: (params?: ApiParams) => Promise<void>;
 }
 
 export const useUsersStore = create<Props>((set) => ({
-    userData: {},
+    userData: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone_number: "",
+        nation_code: "",
+        birthday: null,
+        role: 0,
+        telegram_status: false
+    },
     fetching: false,
     hasError: false,
     fetchUserData: async () => {
@@ -20,7 +29,6 @@ export const useUsersStore = create<Props>((set) => ({
             const response = await getUser();
             set({
                 userData: response.data,
-                fetchUserData: response,
                 fetching: false,
             });
         } catch {

@@ -1,6 +1,5 @@
 import { create } from "zustand";
 
-import { ApiParams } from "core/types";
 import { getOverviewStatus } from "core/services";
 import { DashboardOverviewDataTypes } from "core/types/dashboard.types";
 
@@ -8,7 +7,7 @@ interface Props {
     fetching: boolean;
     hasError: boolean;
     dashOverviewData: DashboardOverviewDataTypes;
-    fetchDashOverviewData: (params?: ApiParams) => Promise<void>;
+    fetchDashOverviewData: () => Promise<void>;
 }
 
 export const useDashboardStore = create<Props>((set) => ({
@@ -26,11 +25,10 @@ export const useDashboardStore = create<Props>((set) => ({
             const response = await getOverviewStatus();
             set({
                 dashOverviewData: response.data,
-                fetchDashOverviewData: response,
                 fetching: false,
             });
         } catch {
             set({ hasError: true, fetching: false });
         }
-    }
+    },
 }));

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -35,6 +35,8 @@ import {
 } from "uiKit";
 import { BottomNavigationLayout } from "./bottom-navigation.layout";
 import { HeaderMobileLayout } from "./header-mobile.layout";
+import { useUsersStore } from "store/useUsers.store";
+import { getRoleName } from "core/utils";
 
 const drawerWidth = 258;
 
@@ -164,6 +166,7 @@ const SidebarMenu = [
 export const MainLayout: React.FC = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const location = useLocation(); // Get current path
+  const { fetchUserData, fetching, userData } = useUsersStore();
 
   const [open, setOpen] = useState(true);
   const [openSubMenu, setOpenSubMenu] = useState<any>({});
@@ -175,6 +178,10 @@ export const MainLayout: React.FC = () => {
     setOpenSubMenu((prev: any) => ({ ...prev, [title]: !prev[title] }));
   };
 
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -324,10 +331,10 @@ export const MainLayout: React.FC = () => {
                       fontWeight={"700"}
                       color="#334155"
                     >
-                      تیـــــــــــــدا گودرزی{" "}
+                      {userData?.first_name} {userData?.last_name}
                     </Typography>
                     <Typography fontSize={12} color={theme.palette.grey[600]}>
-                      مـــــدرس آکادمـــی{" "}
+                      {getRoleName(userData?.role)} آکادمی
                     </Typography>
                   </Box>
                 )}
