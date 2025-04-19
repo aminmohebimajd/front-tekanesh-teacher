@@ -97,7 +97,7 @@ interface FormData {
 }
 
 type Props = {
-  userData: FormData;
+  userData: UsersDataTypes;
 };
 
 export const ProfileForm: React.FC<Props> = ({ userData }) => {
@@ -329,12 +329,30 @@ export const ProfileForm: React.FC<Props> = ({ userData }) => {
           justifyContent={isMobile ? "space-between" : "flex-start"}
         >
           <Typography fontSize={"12px"}>وضعیت اتصال به ربات تلگرام</Typography>
-          <CustomButton
-            variant="contained"
-            sx={{ backgroundColor: "#4DB2D2", fontWeight: 500, height: "34px" }}
-          >
-            اتصال به تلگــــــــــــرام
-          </CustomButton>
+          {userData?.telegram_status ? (
+            <CustomButton
+              variant="contained"
+              sx={{
+                backgroundColor: "#4DB2D2",
+                fontWeight: 500,
+                height: "34px",
+              }}
+              disabled
+            >
+              متصل شده
+            </CustomButton>
+          ) : (
+            <CustomButton
+              variant="contained"
+              sx={{
+                backgroundColor: "#4DB2D2",
+                fontWeight: 500,
+                height: "34px",
+              }}
+            >
+              اتصال به تلگــــــــــــرام
+            </CustomButton>
+          )}
         </Box>
         {/* Submit Button */}
         <Button

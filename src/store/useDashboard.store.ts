@@ -1,6 +1,5 @@
 import { create } from "zustand";
 
-import { ApiParams } from "core/types";
 import {
   getMonthlyStatus,
   getOverviewStatus,
@@ -16,15 +15,11 @@ interface Props {
   fetching: boolean;
   hasError: boolean;
   dashOverviewData: DashboardOverviewDataTypes;
-  fetchDashOverviewData: (params?: ApiParams) => Promise<void>;
+  fetchDashOverviewData: () => Promise<void>;
   dashboardSummaryData: DashboardSummaryDataTypes[];
-  fetchDashboardSummaryData: (params?: ApiParams) => Promise<void>;
+  fetchDashboardSummaryData: () => Promise<void>;
   dashboardMonthlyData: DashboardMonthlyDataTypes;
-  fetchDashboardMonthlyData: (
-    year: number,
-    month: number,
-    params?: ApiParams
-  ) => Promise<void>;
+  fetchDashboardMonthlyData: (year: number, month: number) => Promise<void>;
 }
 
 export const useDashboardStore = create<Props>((set) => ({
@@ -59,7 +54,6 @@ export const useDashboardStore = create<Props>((set) => ({
       const response = await getOverviewStatus();
       set({
         dashOverviewData: response.data,
-        // fetchDashOverviewData: response,
         fetching: false,
       });
     } catch {

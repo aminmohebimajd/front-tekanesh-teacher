@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Chip, Divider, Typography } from "@mui/material";
 import ArrowCircleUpRoundedIcon from "@mui/icons-material/ArrowCircleUpRounded";
 
@@ -10,7 +10,7 @@ import effectiveTeacherLabel from "assets/effective-teacher-label.png";
 import professionalTeacherLabel from "assets/professional-teacher-label.png";
 import regularTeacherLabel from "assets/regular-teacher-label.png";
 import responsibleTeacherLabel from "assets/responsible-teacher-label.png";
-import PersianTypography from "core/utils/PersianTypoGraphy";
+import PersianTypography from "core/utils/PersianTypoGraphy.utils";
 import { useDashboardStore } from "store/useDashboard.store";
 
 export const InfoDashboard: React.FC = () => {
@@ -35,12 +35,7 @@ export const InfoDashboard: React.FC = () => {
     }
   };
 
-  const { fetchDashOverviewData, dashOverviewData } = useDashboardStore();
-
-  useEffect(() => {
-    fetchDashOverviewData();
-  }, []);
-
+  const { dashOverviewData } = useDashboardStore();
   return (
     <Box
       display={"flex"}
